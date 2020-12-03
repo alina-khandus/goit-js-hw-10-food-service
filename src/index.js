@@ -1,14 +1,17 @@
 import './styles.css';
+import './menu.js';
+
 
 //импорт данных
 import menuItem from './templates/menu-items.hbs';
-import menu from './menu.json';
-
-
 console.log(menuItem);
+
+import menu from './menu.json';
 
 export const menuList = document.querySelector('.js-menu');
 export const menuCards = createMenuCards(menu);
+
+
 export default menuList.insertAdjacentHTML('beforeend', menuCards);
 
 function createMenuCards(menu) {
@@ -23,8 +26,8 @@ const theme = {
 
 const body = document.querySelector('body');
 const checkbox = document.querySelector('#theme-switch-toggle');
-const repository = 'light-theme';
-const savedTheme = localStorage.getItem(repository);
+const REPOSITORY = 'light-theme';
+const savedTheme = localStorage.getItem(REPOSITORY);
 
 body.classList.add(theme.LIGHT);
 checkbox.addEventListener('change', onSwitchThemeclick);
@@ -43,5 +46,5 @@ function onSwitchThemeclick() {
   body.classList.toggle(theme.DARK);
 
   const lightTheme = body.classList.contains(theme.LIGHT);
-  localStorage.setItem(repository, lightTheme);
+  localStorage.setItem(REPOSITORY, lightTheme);
 }
